@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour {
     public Transform shotSpwan;
     public float fireRate;
 
-    private Rigidbody rigidbody;
+    private Rigidbody rigidBody;
     private AudioSource audioSource;
     private float nextFire = 0f;
 
     void Start() {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -36,12 +36,12 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        rigidbody.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed;
-        rigidbody.position = new Vector3(
-            Mathf.Clamp(rigidbody.position.x, boundry.xMin, boundry.xMax),
+        rigidBody.velocity = new Vector3(moveHorizontal, 0, moveVertical) * speed;
+        rigidBody.position = new Vector3(
+            Mathf.Clamp(rigidBody.position.x, boundry.xMin, boundry.xMax),
             0f,
-            Mathf.Clamp(rigidbody.position.z, boundry.zMin, boundry.zMax)
+            Mathf.Clamp(rigidBody.position.z, boundry.zMin, boundry.zMax)
         );
-        rigidbody.rotation = Quaternion.Euler(rigidbody.velocity.z * 0.5f * tilt, 0f, rigidbody.velocity.x * -tilt); 
+        rigidBody.rotation = Quaternion.Euler(rigidBody.velocity.z * 0.5f * tilt, 0f, rigidBody.velocity.x * -tilt); 
     }
 }
